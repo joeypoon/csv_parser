@@ -1,4 +1,4 @@
 <%= simple_form_for @customer do |f| %>
-  <%= f.input :csv, as: :file %>
+  <%= f.input :csv, label: 'CSV', as: :file %>
   <%= f.button :submit, "Submit",  class: "btn btn-success" %>
 <% end %>

@@ -6,12 +6,11 @@
 
 <table class="table table-striped">
   <thead>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Address</th>
-    <th>City</th>
-    <th>State</th>
-    <th>Zip Code</th>
+    <% for key in ['First Name', 'Last Name', 'Address', 'City', 'State', 'Zip Code'] %>
+      <th>
+        <%= render partial: 'header', locals: { key: key } %>
+      </th>
+    <% end %>
   </thead>
   <tbody>
     <% @customers.each do |customer| %>

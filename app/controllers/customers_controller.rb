@@ -1,7 +1,9 @@
 class CustomersController < ApplicationController
 
   def index
-    @customers = Customer.all.page(params[:page])
+    order = params[:order] || :updated_at
+    sort = params[:sort] || :desc
+    @customers = Customer.all.order(order => sort).page(params[:page])
   end
 
   def new

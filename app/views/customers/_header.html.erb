@@ -1,0 +1,7 @@
+<%= link_to root_path({ order: key.parameterize.underscore.to_sym, sort: :desc }) do %>
+  <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+<% end %>
+<%= key %>
+<%= link_to root_path({ order: key.parameterize.underscore.to_sym, sort: :asc }) do %>
+  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+<% end %>

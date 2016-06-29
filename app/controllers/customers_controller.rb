@@ -1,9 +1,18 @@
 class CustomersController < ApplicationController
 
   def index
-    order = params[:order] || :updated_at
-    sort = params[:sort] || :desc
-    @customers = Customer.all.order(order => sort).page(params[:page])
+    session[:order] = params[:order] || session[:order] || :updated_at
+    session[:sort] = params[:sort] || session[:sort] || :desc
+    session[:search] = params[:search] || session[:search]
+    if session[:search].present?
+      @customers = Customer.search(session[:search])
+                           .order(session[:order] => session[:sort])
+                           .page(params[:page])
+    else
+      @customers = Customer.all
+                           .order(session[:order] => session[:sort])
+                           .page(params[:page])
+    end
   end
 
   def new

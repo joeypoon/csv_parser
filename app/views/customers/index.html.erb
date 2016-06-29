@@ -2,6 +2,11 @@
   <%= link_to new_customer_path do %>
     <button class="btn btn-success">Upload</button>
   <% end %>
+  <div class="col-md-4 pull-right" style="padding-right: 0;">
+    <%= form_tag root_path, method: 'get' do %>
+      <%= text_field_tag :search, session[:search], class: "form-control", placeholder: "Search" %>
+    <% end %>
+  </div>
 </div>
 
 <table class="table table-striped">

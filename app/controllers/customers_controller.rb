@@ -20,11 +20,12 @@ class CustomersController < ApplicationController
   end
 
   def create
+    raise StandardError unless File.extname(customer_params[:csv].path) == '.csv'
     @customers = Customer.create!(Customer.from_csv(customer_params[:csv].path))
     redirect_to root_path, notice: "Upload success!"
-  rescue ActiveRecord::RecordInvalid
+  rescue ActiveRecord::RecordInvalid, StandardError
     @customer = Customer.new
-    flash[:alert] = "All CSV file entries must have fname, lname, address, city, state, and zip"
+    flash[:alert] = "File must be a CSV and all entries must have fname, lname, address, city, state, and zip"
     render :new
   end
 
